@@ -35,9 +35,11 @@ const Header = () => {
           {/* Logo */}
           <div className="flex items-center gap-2">
             <div className="relative">
-              <div className="w-8 h-8 bg-gradient-hero rounded-md flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-sm">M</span>
-              </div>
+              <img 
+                src="/lovable-uploads/9671441b-1cfc-4683-937f-ae12c817adb8.png" 
+                alt="MonteV Logo" 
+                className="w-8 h-8 rounded-md"
+              />
               <div className="absolute -top-1 -right-1 w-3 h-3 bg-accent rounded-full animate-pulse"></div>
             </div>
             <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">
