@@ -12,7 +12,7 @@ const HeroSection = () => {
           alt="MonteV Hero" 
           className="w-full h-full object-cover opacity-20"
         />
-        <div className="absolute inset-0 bg-gradient-hero opacity-90"></div>
+        <div className="absolute inset-0 bg-[hsl(210,50%,15%)] opacity-95"></div>
       </div>
 
       {/* Floating Elements */}
