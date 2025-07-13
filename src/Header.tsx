@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Code, Monitor, Smartphone } from 'lucide-react';
-import { removeBackground, loadImageFromUrl } from '@/lib/imageUtils';
+import { removeBackground, loadImageFromUrl } from '@/imageUtils';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
