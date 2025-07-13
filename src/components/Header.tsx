@@ -43,7 +43,7 @@ const Header = () => {
               <div className="absolute -top-1 -right-1 w-3 h-3 bg-accent rounded-full animate-pulse"></div>
             </div>
             <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">
-              MonteV
+              Montev
             </span>
           </div>
 
