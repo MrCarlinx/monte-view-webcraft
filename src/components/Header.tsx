@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Code, Monitor, Smartphone } from 'lucide-react';
+import { removeBackground, loadImageFromUrl } from '@/lib/imageUtils';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [processedLogoUrl, setProcessedLogoUrl] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -12,6 +14,29 @@ const Header = () => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const processLogo = async () => {
+      try {
+        const img = await loadImageFromUrl('/lovable-uploads/1580f568-fd91-4b37-8d9c-642de3fb7f06.png');
+        const processedBlob = await removeBackground(img);
+        const processedUrl = URL.createObjectURL(processedBlob);
+        setProcessedLogoUrl(processedUrl);
+      } catch (error) {
+        console.error('Error processing logo:', error);
+        // Fallback to original image
+        setProcessedLogoUrl('/lovable-uploads/1580f568-fd91-4b37-8d9c-642de3fb7f06.png');
+      }
+    };
+
+    processLogo();
+
+    return () => {
+      if (processedLogoUrl) {
+        URL.revokeObjectURL(processedLogoUrl);
+      }
+    };
   }, []);
 
   const navItems = [
@@ -35,11 +60,15 @@ const Header = () => {
           {/* Logo */}
           <div className="flex items-center gap-2">
             <div className="relative">
-              <img 
-                src="/lovable-uploads/9671441b-1cfc-4683-937f-ae12c817adb8.png" 
-                alt="MonteV Logo" 
-                className="w-8 h-8 rounded-md"
-              />
+              {processedLogoUrl ? (
+                <img 
+                  src={processedLogoUrl} 
+                  alt="Montev Logo" 
+                  className="w-8 h-8 rounded-full"
+                />
+              ) : (
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 animate-pulse"></div>
+              )}
               <div className="absolute -top-1 -right-1 w-3 h-3 bg-accent rounded-full animate-pulse"></div>
             </div>
             <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">
